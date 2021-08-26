@@ -1,24 +1,22 @@
 server:
-  port: 9092
+  port: 9090
+
 
 spring:
   datasource:
-    url: jdbc:h2:file:~/dev/temp/h2db/rememberme
+    url: jdbc:h2:tcp://localhost/~/jpashop
     username: sa
     password:
     driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create  # 애플리케이션 실행시점에 data를 다 지우고 다시 생성
     properties:
       hibernate:
-        show_sql: true
+    #    show_sql: true 시스템 out통해 출력
         format_sql: true
-  h2:
-    console:
-      enabled: true
-
 logging:
   level:
-    org.hibernate.SQL: debug
+    org.hibernate.SQL: debug  # log를 통해 출력
+    org.hibernate.type: trace # sql type와 value param값을 찍어줌
