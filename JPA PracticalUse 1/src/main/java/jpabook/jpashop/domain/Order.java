@@ -51,7 +51,6 @@ public class Order {
     * 그러므로 둘 중에 한 곳만 변경을 감지해서 fk를 수정하도록 약속. 어느 곳? 더 가까운 곳.
     *
 
-
     public static void main(String[] args) {
         // 원래는 이렇게 구현해야하는데 번거롭고, 빠뜨릴 가능성이 있다.
         Member member = new Member();
@@ -60,7 +59,6 @@ public class Order {
         member.getOrders().add(order);
         order.setMember(member);
     }  그래서 필요한 */
-
 
     //== 연관관계 메소드 : 보통 위치는 더 컨트롤하는 한쪽에 ! ==//
     public void setMember(Member member){

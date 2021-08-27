@@ -24,7 +24,9 @@ public class Member {
     @Embedded // 내장 타입을 포함했다.
     private Address address;
 
-    @OneToMany(mappedBy = "member") //order 테이블에 있는 member 필드에 의해 매핑된 것, 이렇게 함으로써 읽기전용(거울이 되는 것)
+    @OneToMany(mappedBy = "member")
+    // order 테이블에 있는 member 필드에 의해 매핑된 것,
+    // 이렇게 함으로써 읽기전용(거울이 되는 것)
     private List<Order> orders = new ArrayList<>();
 
     

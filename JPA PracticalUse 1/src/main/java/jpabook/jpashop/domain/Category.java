@@ -23,8 +23,10 @@ public class Category {
     @JoinTable(name = "category_item",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))
-    //중간 테이블 매핑. 객체는 다대다 관계를 가질 수있지만 관계형 데이터 테이블을 다대다관계로 가질 수 없기 때문에
-    // 다대일 일대다 형태로 풀어내는 중간 테이블이 있어야함
+/*   중간 테이블 매핑.
+     객체는 다대다 관계를 가질 수있지만
+     관계형 데이터 테이블을 다대다관계로 가질 수 없기 때문에
+     다대일 일대다 형태로 풀어내는 중간 테이블이 있어야함*/
     private List<Item> items = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
