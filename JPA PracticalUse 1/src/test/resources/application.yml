@@ -1,0 +1,24 @@
+server:
+  port: 9090
+
+
+spring:
+#  datasource:    데이터소스 설정없이도 스프링 부트는 test하위에 resources 파일 있으면 알아서 Inmemory 방식으로 teset진행함.
+  #    url: jdbc:h2:mem:test
+  # username: sa
+  # password:
+  # driver-class-name: org.h2.Driver
+
+  #jpa:
+  # hibernate:
+  #   ddl-auto: create  # 애플리케이션 실행시점에 data를 다 지우고 다시 생성
+  # properties:
+  #   hibernate:
+   #    show_sql: true 시스템 out통해 출력
+   #    format_sql: true
+
+
+logging:
+  level:
+    org.hibernate.SQL: debug  # log를 통해 출력
+    org.hibernate.type: trace # sql type와 value param값을 찍어줌
