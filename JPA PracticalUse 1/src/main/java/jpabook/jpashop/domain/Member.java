@@ -27,7 +27,7 @@ public class Member {
     @OneToMany(mappedBy = "member")
     // order 테이블에 있는 member 필드에 의해 매핑된 것,
     // 이렇게 함으로써 읽기전용(거울이 되는 것)
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<Order>();
 
     
 

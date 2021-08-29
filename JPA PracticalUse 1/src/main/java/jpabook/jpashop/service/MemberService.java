@@ -33,7 +33,8 @@ public class MemberService {
     private void validateDuplicateMember(Member member) {
         //EXCEPTION
         List<Member> findbyName = memberRepository.findByName(member.getName());
-        //사실상 문제가 있음. 영시 영분 영초에 동시에 가입을 한다면 ? 최후의 방어가 필요. 멀티쓰레드를 고려해 마지막 검증문으로 멤버의 이름을 유니크 제약조건으로 거는 방법 등을 적용해야함
+        //사실상 문제가 있음. 영시 영분 영초에 동시에 가입을 한다면 ? 최후의 방어가 필요.
+        // 멀티쓰레드를 고려해 마지막 검증문으로 멤버의 이름을 유니크 제약조건으로 거는 방법 등을 적용해야함
         if(!findbyName.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
