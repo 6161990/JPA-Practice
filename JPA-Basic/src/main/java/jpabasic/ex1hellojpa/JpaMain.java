@@ -17,13 +17,15 @@ public class JpaMain {
 
         try{
 /*            Member member = new Member();
-            member.setId(2L);
+            member.setId(3L);
             member.setName("리사");
 
             entityManager.persist(member);*/
 
-            Member member1 = entityManager.find(Member.class, 1L);
-            member1.setName("로제");
+            Member member1 = entityManager.find(Member.class, 3L);
+            Member member2 = entityManager.find(Member.class, 3L);
+
+            System.out.println("result = " + (member1 == member2)); 
 
             transaction.commit();
         } catch (Exception e){
