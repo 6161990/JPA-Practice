@@ -18,11 +18,22 @@ public class Member2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "USERNAME")
     private String username;
 
+/*
+    @Column(name = "TEAM_ID")
+    private Long teamId;
+*/
+    @ManyToOne
+    @JoinColumn(name="TEAM_ID")
+    private Team team;
+
+
+/*
     private int age;
 
     @Column(precision = 30)
@@ -42,6 +53,7 @@ public class Member2 {
 
     @Lob
     private String description;
+*/
 
 
 
