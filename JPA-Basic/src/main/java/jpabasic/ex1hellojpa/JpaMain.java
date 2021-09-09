@@ -24,8 +24,9 @@ public class JpaMain {
 
             Member2 member2 = new Member2();
             member2.setUsername("제니");
-            member2.setTeam(team);
-            entityManager.persist(member2);
+            member2.setTeam(team); //연관관계 정방향
+
+            team.getMembers().add(member2); //연관관계 역방향 => 정, 역방향 둘다 값을 넣어주는 것이 맞음음            entityManager.persist(member2);
 
             entityManager.flush();
             entityManager.clear();
