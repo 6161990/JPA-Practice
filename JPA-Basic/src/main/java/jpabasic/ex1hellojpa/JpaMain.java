@@ -24,9 +24,10 @@ public class JpaMain {
 
             Member2 member2 = new Member2();
             member2.setUsername("제니");
-            member2.setTeam(team); //연관관계 정방향
-
-            team.getMembers().add(member2); //연관관계 역방향 => 정, 역방향 둘다 값을 넣어주는 것이 맞음음            entityManager.persist(member2);
+ //          member2.setTeam(team); //연관관계 정방향
+ //          team.getMembers().add(member2); //연관관계 역방향 => 정, 역방향 둘다 값을 넣어주는 것이 맞음음            entityManager.persist(member2);
+            member2.changeTeam(team); // 연관관계 정,역방향 둘 다 setting하는 member쪽 연관관계 편의 메소드
+            //team.addMember(member2); // team쪽 연관관계 편의 메소드
 
             entityManager.flush();
             entityManager.clear();

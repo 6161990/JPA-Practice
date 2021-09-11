@@ -20,4 +20,12 @@ public class Team {
 
     @OneToMany(mappedBy = "team")
     List<Member2> members = new ArrayList<Member2>();
+
+
+/*
+    연관관계 편의 메소드
+    public void addMember(Member2 member2) {
+        member2.setTeam(this);
+        members.add(member2);
+    }*/
 }
