@@ -25,9 +25,13 @@ public class JpaMain {
             Member2 member2 = new Member2();
             member2.setUsername("제니");
  //          member2.setTeam(team); //연관관계 정방향
- //          team.getMembers().add(member2); //연관관계 역방향 => 정, 역방향 둘다 값을 넣어주는 것이 맞음음            entityManager.persist(member2);
+ //          team.getMembers().add(member2); //연관관계 역방향 => 정, 역방향 둘다 값을 넣어주는 것이 맞음
+            entityManager.persist(member2);
             member2.changeTeam(team); // 연관관계 정,역방향 둘 다 setting하는 member쪽 연관관계 편의 메소드
             //team.addMember(member2); // team쪽 연관관계 편의 메소드
+
+            /* 만약 연관관계 주인을 Team의 List members로 한다면 (외래키는 Many쪽에 두어야 하므로 Member 테이블에! )
+            * Team의 members를 update한다면 Member의 team_id에도 update쿼리문을 날려야 한다. */
 
             entityManager.flush();
             entityManager.clear();

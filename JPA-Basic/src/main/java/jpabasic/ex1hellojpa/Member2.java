@@ -37,6 +37,10 @@ public class Member2 {
         team.getMembers().add(this);
     }
 
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
 /*
     private int age;
 
