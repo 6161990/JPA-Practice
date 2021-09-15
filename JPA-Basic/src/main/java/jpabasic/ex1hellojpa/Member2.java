@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -41,7 +43,16 @@ public class Member2 {
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
-/*
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
+
+    /*
+    @ManyToMany
+    @JoinTable(name = "MEMBER_PRODUCT")
+    private List<Product> products= new ArrayList<>(); */
+
+
+    /*
     private int age;
 
     @Column(precision = 30)
