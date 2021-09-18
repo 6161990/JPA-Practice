@@ -17,37 +17,27 @@ public class JpaMain {
         transaction.begin();
 
         try{
-            //저장
             Team team = new Team();
-            team.setName("BLACKPINK");
+            team.setName("teamA");
             entityManager.persist(team);
 
-            Member2 member2 = new Member2();
-            member2.setUsername("제니");
- //          member2.setTeam(team); //연관관계 정방향
- //          team.getMembers().add(member2); //연관관계 역방향 => 정, 역방향 둘다 값을 넣어주는 것이 맞음
-            entityManager.persist(member2);
-            member2.changeTeam(team); // 연관관계 정,역방향 둘 다 setting하는 member쪽 연관관계 편의 메소드
-            //team.addMember(member2); // team쪽 연관관계 편의 메소드
+            Member2 member1 = new Member2();
+            member1.setUsername("제니");
+            member1.setTeam(team);
 
-            /* 만약 연관관계 주인을 Team의 List members로 한다면 (외래키는 Many쪽에 두어야 하므로 Member 테이블에! )
-            * Team의 members를 update한다면 Member의 team_id에도 update쿼리문을 날려야 한다. */
+            entityManager.persist(member1);
 
             entityManager.flush();
             entityManager.clear();
 
-            Member2 findMember = entityManager.find(Member2.class, member2.getId());
-
-            List<Member2> members = findMember.getTeam().getMembers();
-
-            for(Member2 m : members){
-                System.out.println("m = "+m.getUsername());
-            }
+            List<Member2> members = entityManager.createQuery("select m from Member2 m", Member2.class)
+                    .getResultList();
 
 
             transaction.commit();
         } catch (Exception e){
             transaction.rollback();
+            e.printStackTrace();
         }finally {
             entityManager.close();
         }

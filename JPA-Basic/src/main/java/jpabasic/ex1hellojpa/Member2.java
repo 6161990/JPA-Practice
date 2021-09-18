@@ -30,7 +30,7 @@ public class Member2 {
     @Column(name = "TEAM_ID")
     private Long teamId;
 */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER) //프록시 객체로 조회함
     @JoinColumn(name="TEAM_ID")
     private Team team;
 
@@ -39,7 +39,7 @@ public class Member2 {
         team.getMembers().add(this);
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
