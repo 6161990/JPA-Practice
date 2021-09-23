@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +46,30 @@ public class Member2 {
 
     @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProducts = new ArrayList<>();
+
+    // 기간 Period
+    @Embedded
+    private Period workPeriod;
+    /* private LocalDateTime startDate;
+    private LocalDateTime endDate;*/
+
+
+    // 주소 Address
+    @Embedded
+    private Address homeAddress;
+    /*private String city;
+    private String street;
+    private String zipcode;*/
+
+    @Embedded
+    @AttributeOverrides({@AttributeOverride(name = "city",
+                                column=@Column(name ="WORK_CITY")),
+                        @AttributeOverride(name = "street",
+                                column=@Column(name = "WORK_STREET")),
+                        @AttributeOverride(name = "zipcode",
+                                column=@Column(name = "WORK_ZIPCODE"))
+    })
+    private Address workAddress;
 
     /*
     @ManyToMany

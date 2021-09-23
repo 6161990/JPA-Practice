@@ -18,18 +18,14 @@ public class JpaMain {
 
         try{
 
-            Child child1 = new Child();
-            Child child2 = new Child();
+           Member2 member2 = new Member2();
+           member2.setUsername("hello");
+           member2.setHomeAddress(new Address("city", "street", "3403"));
+           member2.setWorkPeriod(new Period());
 
-            Parent parent = new Parent();
-            parent.addChild(child1);
-            parent.addChild(child2);
+           entityManager.persist(member2);
 
-            entityManager.persist(parent);
-            entityManager.persist(child1);
-            entityManager.persist(child2);
-
-            transaction.commit();
+           transaction.commit();
         } catch (Exception e){
             transaction.rollback();
             e.printStackTrace();
