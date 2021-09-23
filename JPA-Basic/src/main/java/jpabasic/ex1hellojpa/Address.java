@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.Embeddable;
 
 @Embeddable
-@Getter @Setter
+@Getter //@Setter 불변 객체로 설계
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {

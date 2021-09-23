@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
 @Embeddable
-@Getter @Setter
+@Getter // @Setter 불변 객체로 설계
 @NoArgsConstructor
 @AllArgsConstructor
 public class Period {
