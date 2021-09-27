@@ -1,5 +1,7 @@
 package jpql;
 
+import jpabasic.ex1hellojpa.jpashop.domain.Member;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,17 +21,16 @@ public class JpaMain {
             jqqlMember.setAge(30);
             entityManager.persist(jqqlMember);
 
-            TypedQuery<jpql_Member> findMemberQuery = entityManager.createQuery("select m from jpql_Member m where m.username =: username", jpql_Member.class);
-            findMemberQuery.setParameter("username","member1");
-            jpql_Member singleResult = findMemberQuery.getSingleResult();
-            System.out.println(singleResult.getUsername());
+            entityManager.flush();
+            entityManager.clear();
 
-            //또는
+            List<MemberDTO> result = entityManager.createQuery("select new jpql.MemberDTO(m.username, m.age) from jpql_Member m", MemberDTO.class)
+                    .getResultList();
 
-            jpql_Member result = entityManager.createQuery("select m from jpql_Member m where m.username =: username", jpql_Member.class)
-                    .setParameter("username", "member1")
-                    .getSingleResult();
-            System.out.println("result = " + result.getUsername());
+            MemberDTO memberDTO = result.get(0);
+            System.out.println("memberDTO = "+ memberDTO.getName());
+            System.out.println("memberDTO = "+ memberDTO.getAge());
+
 
 
             transaction.commit();
