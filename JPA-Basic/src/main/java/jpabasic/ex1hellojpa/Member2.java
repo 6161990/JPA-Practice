@@ -52,7 +52,7 @@ public class Member2 {
     private LocalDateTime endDate;*/
 
 
-    // 주소 Address
+    // 주소 jpql_Address
     @Embedded
     private Address homeAddress;
     /*private String city;
@@ -68,7 +68,7 @@ public class Member2 {
 /*    @ElementCollection
     @CollectionTable(name = "ADDRESS", joinColumns =
         @JoinColumn(name = "MEMBER_ID"))
-    private List<Address> addressHistory = new ArrayList<>();*/
+    private List<jpql_Address> addressHistory = new ArrayList<>();*/
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "MEMBER_ID")
@@ -82,12 +82,12 @@ public class Member2 {
                         @AttributeOverride(name = "zipcode",
                                 column=@Column(name = "WORK_ZIPCODE"))
     })
-    private Address workAddress;*/
+    private jpql_Address workAddress;*/
 
     /*
     @ManyToMany
     @JoinTable(name = "MEMBER_PRODUCT")
-    private List<Product> products= new ArrayList<>(); */
+    private List<jpql_Product> products= new ArrayList<>(); */
 
 
     /*
