@@ -21,7 +21,7 @@ public class JpaMain {
             entityManager.persist(team);
 
             jpql_Member jqqlMember = new jpql_Member();
-            jqqlMember.setUsername("member1");
+            jqqlMember.setUsername("관리자");
             jqqlMember.setAge(12);
             jqqlMember.setTeam(team);
             jqqlMember.setType(MemberType.ADMIN);
@@ -30,25 +30,19 @@ public class JpaMain {
             entityManager.flush();
             entityManager.clear();
 
-/*
-            String innerJoin = "select m from jpql_Member m inner join m.team t";
-            String leftJoin = "select m from jpql_Member m left join m.team t";
-            String setaJoin = "select count(m) from jpql_Member m, Team t where m.username = t.name";
-            List<jpql_Member> resultList = entityManager.createQuery(setaJoin, jpql_Member.class).getResultList();
- */
+            String query1 = "select case when m.age <= 10 then '학생요금'" +
+                                        "when m.age >= 60 then '경로요금' " +
+                                        "else '일반요금' end " +
+                           "from jpql_Member m";
 
-            String type = "select m.username, 'HELLO', TRUE From jpql_Member m " +
-                    "where m.type = :userType";
-            List<Object[]> result = entityManager.createQuery(type)
-                    .setParameter("userType", MemberType.ADMIN)
-                    .getResultList();
+            String query2 = "select coalesce(m.username, '이름 없는 회원') from jpql_Member m";
 
-            for(Object[] objects : result){
-                System.out.println("objects = " + objects[0]);
-                System.out.println("objects = " + objects[1]);
-                System.out.println("objects = " + objects[2]);
+            String query ="select nullif(m.username, '관리자') as username from jpql_Member m";
+            List<String> resultList = entityManager.createQuery(query, String.class).getResultList();
+
+            for(String s : resultList){
+                System.out.println("s = "+ s);
             }
-
             transaction.commit();
         } catch (Exception e){
             transaction.rollback();
