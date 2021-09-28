@@ -18,6 +18,6 @@ public class jpql_Order {
     private jpql_Address address;
 
     @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID")
+    @JoinColumn(name = "JPQL_PRODUCT_ID")
     private jpql_Product product;
 }

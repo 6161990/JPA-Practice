@@ -16,21 +16,23 @@ public class JpaMain {
         transaction.begin();
 
         try{
+            jpql_Team team = new jpql_Team();
+            team.setName("team a");
+            entityManager.persist(team);
+
             jpql_Member jqqlMember = new jpql_Member();
             jqqlMember.setUsername("member1");
-            jqqlMember.setAge(30);
+            jqqlMember.setAge(12);
+            jqqlMember.setTeam(team);
             entityManager.persist(jqqlMember);
 
             entityManager.flush();
             entityManager.clear();
 
-            List<MemberDTO> result = entityManager.createQuery("select new jpql.MemberDTO(m.username, m.age) from jpql_Member m", MemberDTO.class)
-                    .getResultList();
-
-            MemberDTO memberDTO = result.get(0);
-            System.out.println("memberDTO = "+ memberDTO.getName());
-            System.out.println("memberDTO = "+ memberDTO.getAge());
-
+            String innerJoin = "select m from jpql_Member m inner join m.team t";
+            String leftJoin = "select m from jpql_Member m left join m.team t";
+            String setaJoin = "select count(m) from jpql_Member m, Team t where m.username = t.name";
+            List<jpql_Member> resultList = entityManager.createQuery(setaJoin, jpql_Member.class).getResultList();
 
 
             transaction.commit();
