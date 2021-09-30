@@ -43,13 +43,11 @@ public class JpaMain {
             entityManager.flush();
             entityManager.clear();
 
-            List<jpql_Member> resultList = entityManager.createNamedQuery("jpql_Member.findByUsername", jpql_Member.class)
-                    .setParameter("username", "회원1")
-                    .getResultList();
+            
+            int i = entityManager.createQuery("update jpql_Member m set m.age = 20")
+                    .executeUpdate();
 
-            for(jpql_Member member : resultList){
-                System.out.println("member = " + member);
-            }
+            System.out.println("i = "+i);
 
 
             transaction.commit();
