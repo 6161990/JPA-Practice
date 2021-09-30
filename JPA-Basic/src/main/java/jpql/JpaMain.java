@@ -43,17 +43,19 @@ public class JpaMain {
             entityManager.flush();
             entityManager.clear();
 
-           // String query = "select m from jpql_Member m";
-            String query ="select m from jpql_Member m join fetch m.team";
 
-            List<jpql_Member> result = entityManager.createQuery(query, jpql_Member.class)
+            String query ="select t From jpql_Team t";
+
+            List<jpql_Team> result = entityManager.createQuery(query, jpql_Team.class)
+                    .setFirstResult(0)
+                    .setMaxResults(2)
                     .getResultList();
 
-            for(jpql_Member member : result){
-                System.out.println("Member = "+ member.getUsername()+", "+member.getTeam().getName());
-                //회원 1, 팀 A (SQL)
-                //회원 2, 팀 A (1차 캐시)
-                //회원 3, 팀 B (SQL)
+            for(jpql_Team team : result){
+                System.out.println("team = "+ team.getName()+", members = "+team.getMembers());
+                for(jpql_Member member : team.getMembers()){
+                    System.out.println("-> member = " + member);
+                }
             }
 
 
