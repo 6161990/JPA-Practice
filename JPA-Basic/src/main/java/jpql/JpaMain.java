@@ -43,19 +43,12 @@ public class JpaMain {
             entityManager.flush();
             entityManager.clear();
 
-
-            String query ="select t From jpql_Team t";
-
-            List<jpql_Team> result = entityManager.createQuery(query, jpql_Team.class)
-                    .setFirstResult(0)
-                    .setMaxResults(2)
+            List<jpql_Member> resultList = entityManager.createNamedQuery("jpql_Member.findByUsername", jpql_Member.class)
+                    .setParameter("username", "회원1")
                     .getResultList();
 
-            for(jpql_Team team : result){
-                System.out.println("team = "+ team.getName()+", members = "+team.getMembers());
-                for(jpql_Member member : team.getMembers()){
-                    System.out.println("-> member = " + member);
-                }
+            for(jpql_Member member : resultList){
+                System.out.println("member = " + member);
             }
 
 

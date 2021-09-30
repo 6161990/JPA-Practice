@@ -7,6 +7,9 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@NamedQuery( name= "jpql_Member.findByUsername",
+             query = "select m from jpql_Member m where m.username = :username"
+)
 public class jpql_Member {
 
     @Id @GeneratedValue
