@@ -43,7 +43,7 @@ public class JpaMain {
             entityManager.flush();
             entityManager.clear();
 
-            
+
             int i = entityManager.createQuery("update jpql_Member m set m.age = 20")
                     .executeUpdate();
 
